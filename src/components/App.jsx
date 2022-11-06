@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { nanoid } from 'nanoid'
 import { ContactForm } from "components/ContactForm/ContactForm";
 import { Filter } from "components/Filter/Filter";
 import { ContactList } from "components/ContactList/ContactList";
@@ -94,19 +93,8 @@ export const App = () => {
 
   const contacts = useSelector(getContacts);
   // const filter = useSelector(getFilter);
-  console.log(contacts);
 
   const [filter, setFilter] = useState('');
-
-  // const addContacts = ({ name, number }) => {
-  //   const newContact = {
-  //     id: nanoid(),
-  //     name,
-  //     number,
-  //   };
-  //   const searchRepeatName = contacts.map(contact => contact.name.toLowerCase()).includes(newContact.name.toLowerCase());
-  //   searchRepeatName ? alert(`${newContact.name} is alredy in contacts`) : setContacts((prevState => [newContact, ...prevState]));
-  // };
 
 
   const filterChange = e => {
@@ -120,9 +108,6 @@ export const App = () => {
     return contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter));
   };
 
-  const deleteContact = (contactId) => {
-    // setContacts(prevState => prevState.filter(contact => contact.id !== contactId));
-  }
 
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
@@ -141,7 +126,7 @@ export const App = () => {
           value={filter}
           onChange={filterChange}>
         </Filter>
-        <ContactList visibleName={visibleName} onDeleteContact={deleteContact}></ContactList>
+        <ContactList visibleName={visibleName}></ContactList>
         </div>}
       </div>
        

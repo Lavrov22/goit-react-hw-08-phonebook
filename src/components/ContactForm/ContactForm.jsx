@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useState, useRef } from "react";
 import { useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid'
@@ -71,7 +70,7 @@ import { addContacts } from "redux/actions";
 
 // ================hooks====================
 
-export const ContactForm = ({ onSubmit }) => {
+export const ContactForm = () => {
     
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');

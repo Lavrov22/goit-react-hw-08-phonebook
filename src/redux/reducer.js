@@ -18,11 +18,24 @@ const contactsReducer = (state = contactsInitialState, {type, payload}) => {
             } else {
                 return [payload, ...state]
             };
+
+        case "contacts/deleteContacts":
+            return state.filter(contact => contact.id !== payload);
         default:
             return state;
     }
 };
 
+const filterInitialState = '';
+
+const filterReducer = (state = filterInitialState, { type, payload }) => {
+    switch (type) {
+        default:
+            return state;
+    }
+}
+
 export const rootReducer = combineReducers({
     contacts: contactsReducer,
+    filter: filterReducer,
 })
