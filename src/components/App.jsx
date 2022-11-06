@@ -3,6 +3,9 @@ import { nanoid } from 'nanoid'
 import { ContactForm } from "components/ContactForm/ContactForm";
 import { Filter } from "components/Filter/Filter";
 import { ContactList } from "components/ContactList/ContactList";
+import { getFilter, getContacts } from "redux/selectors";
+import { useSelector } from "react-redux";
+
 
 // ===============class===========
 
@@ -89,23 +92,21 @@ import { ContactList } from "components/ContactList/ContactList";
 
 export const App = () => {
 
-  const [contacts, setContacts] = useState(() => JSON.parse(window.localStorage.getItem('contacts')) ?? [
-    { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-    { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-    { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-    { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-  ]);
+  const contacts = useSelector(getContacts);
+  // const filter = useSelector(getFilter);
+  console.log(contacts);
+
   const [filter, setFilter] = useState('');
 
-  const addContacts = ({ name, number }) => {
-    const newContact = {
-      id: nanoid(),
-      name,
-      number,
-    };
-    const searchRepeatName = contacts.map(contact => contact.name.toLowerCase()).includes(newContact.name.toLowerCase());
-    searchRepeatName ? alert(`${newContact.name} is alredy in contacts`) : setContacts((prevState => [newContact, ...prevState]));
-  };
+  // const addContacts = ({ name, number }) => {
+  //   const newContact = {
+  //     id: nanoid(),
+  //     name,
+  //     number,
+  //   };
+  //   const searchRepeatName = contacts.map(contact => contact.name.toLowerCase()).includes(newContact.name.toLowerCase());
+  //   searchRepeatName ? alert(`${newContact.name} is alredy in contacts`) : setContacts((prevState => [newContact, ...prevState]));
+  // };
 
 
   const filterChange = e => {
@@ -120,7 +121,7 @@ export const App = () => {
   };
 
   const deleteContact = (contactId) => {
-    setContacts(prevState => prevState.filter(contact => contact.id !== contactId));
+    // setContacts(prevState => prevState.filter(contact => contact.id !== contactId));
   }
 
   useEffect(() => {
@@ -132,7 +133,7 @@ export const App = () => {
     return (
       <div>
         <h1>Phonebook</h1>
-        <ContactForm onSubmit={addContacts}></ContactForm>
+        <ContactForm></ContactForm>
         {contacts.length !== 0 && 
         <div>
         <h2>Contacts</h2>
