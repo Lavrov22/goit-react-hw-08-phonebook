@@ -1,8 +1,21 @@
-import { createStore } from "redux";
-import { devToolsEnhancer } from "@redux-devtools/extension";
-import { rootReducer } from "redux/reducer";
+// import { createStore } from "redux";
+// import { devToolsEnhancer } from "@redux-devtools/extension";
+import { configureStore } from "@reduxjs/toolkit";
+// import { rootReducer } from "redux/reducer";
+import { contactsReducer,  filterReducer} from "redux/reducer";
 
 
-const enhacer = devToolsEnhancer();
+// =======vanila============
 
-export const store = createStore(rootReducer, enhacer);
+// const enhacer = devToolsEnhancer();
+
+// export const store = createStore(rootReducer, enhacer);
+
+// ======reduxToolkit======
+
+export const store = configureStore({
+    reducer: {
+        contacts: contactsReducer,
+        filter: filterReducer,
+    },
+})

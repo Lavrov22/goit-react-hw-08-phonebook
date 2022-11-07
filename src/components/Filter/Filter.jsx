@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { changeFilter } from "redux/actions";
+import { findContacts } from "redux/actions";
 import { getFilter } from "redux/selectors";
 import { FilterLabel, FilterInput } from "components/Filter/Filter.styled";
 
@@ -10,7 +10,7 @@ export const Filter = () => {
   
   const filterChange = e => {
     const { value } = e.currentTarget;
-    dispatch(changeFilter(value));
+    dispatch(findContacts(value));
   };
 
 
