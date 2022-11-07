@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid'
 import { ButtonSubmit, FormContact, FormLabel, FormInput } from "components/ContactForm/ContactForm.styled";
-import { addContacts } from "redux/actions";
+import { addContacts } from "reduxSlice/contactsSlice";
 
 // ================Class====================
 

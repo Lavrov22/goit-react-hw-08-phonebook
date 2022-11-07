@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { getContacts } from "redux/selectors";
+import { getContacts } from "reduxSlice/selectors";
 import { useSelector} from "react-redux";
 import { ContactForm } from "components/ContactForm/ContactForm";
 import { Filter } from "components/Filter/Filter";
