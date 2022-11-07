@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { getContacts } from "redux/selectors";
+import { useSelector} from "react-redux";
 import { ContactForm } from "components/ContactForm/ContactForm";
 import { Filter } from "components/Filter/Filter";
 import { ContactList } from "components/ContactList/ContactList";
-import { getFilter, getContacts } from "redux/selectors";
-import { useSelector } from "react-redux";
+
 
 
 // ===============class===========
@@ -92,28 +93,12 @@ import { useSelector } from "react-redux";
 export const App = () => {
 
   const contacts = useSelector(getContacts);
-  // const filter = useSelector(getFilter);
-
-  const [filter, setFilter] = useState('');
-
-
-  const filterChange = e => {
-     const {value } = e.currentTarget;
-     setFilter(value);
-    
-    };
-
-  const filterByName = () => {
-    const normalizedFilter = filter.toLowerCase();
-    return contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter));
-  };
 
 
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
-
-  const visibleName = filterByName();
+  
 
     return (
       <div>
@@ -122,11 +107,8 @@ export const App = () => {
         {contacts.length !== 0 && 
         <div>
         <h2>Contacts</h2>
-        <Filter 
-          value={filter}
-          onChange={filterChange}>
-        </Filter>
-        <ContactList visibleName={visibleName}></ContactList>
+        <Filter></Filter>
+        <ContactList></ContactList>
         </div>}
       </div>
        

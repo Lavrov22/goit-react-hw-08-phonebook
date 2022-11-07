@@ -30,6 +30,8 @@ const filterInitialState = '';
 
 const filterReducer = (state = filterInitialState, { type, payload }) => {
     switch (type) {
+        case "filter/findContacts":
+            return payload;
         default:
             return state;
     }

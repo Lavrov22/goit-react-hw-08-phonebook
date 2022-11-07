@@ -18,3 +18,10 @@ export const deleteContacts = (contactId) => {
     };
 };
 
+export const changeFilter = (value) => {
+    return {
+        type: "filter/findContacts",
+        payload: value,
+    };
+};
+
