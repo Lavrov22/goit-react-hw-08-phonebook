@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { getContacts } from "reduxSlice/selectors";
 import { useSelector} from "react-redux";
 import { ContactForm } from "components/ContactForm/ContactForm";
@@ -93,12 +93,6 @@ import { ContactList } from "components/ContactList/ContactList";
 export const App = () => {
 
   const contacts = useSelector(getContacts);
-
-
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
-  
 
     return (
       <div>
