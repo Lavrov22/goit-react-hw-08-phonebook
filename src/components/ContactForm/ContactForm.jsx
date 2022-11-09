@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getContacts } from "reduxSlice/selectors";
 import { nanoid } from 'nanoid'
 import { ButtonSubmit, FormContact, FormLabel, FormInput } from "components/ContactForm/ContactForm.styled";
 import { addContacts } from "reduxSlice/contactsSlice";
@@ -75,6 +76,7 @@ export const ContactForm = () => {
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
 
+    const contacts = useSelector(getContacts);
     const numberId = useRef(nanoid());
     const nameId = useRef(nanoid());
 
@@ -97,7 +99,10 @@ export const ContactForm = () => {
     const handleSubmit = e => {
         e.preventDefault();
         dispatch(addContacts({ name, number }));
-        reset();
+        const contactsName = contacts.map(contact => contact.name);
+        if (!contactsName.includes(name)) {
+            return reset();
+        }
     };
 
     const reset = () => {

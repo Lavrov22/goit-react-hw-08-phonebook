@@ -15,7 +15,7 @@ export const contactSlice = createSlice({
         addContacts: {
             reducer(state, { payload }) {
                 const contactName = state.map(contact =>
-                contact.name.toLowerCase());
+                    contact.name.toLowerCase());
             if (contactName.includes(payload.name.toLowerCase())) {
                 alert(`${payload.name} is alredy in contacts`);
                 return state;
