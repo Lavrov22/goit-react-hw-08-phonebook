@@ -6,7 +6,7 @@ export const filterSlice = createSlice({
     name: "filter",
     initialState: filterInitialState,
     reducers: {
-        findContacts(state, { payload }) {
+        findContacts(_, { payload }) {
            return payload; 
         }
     }

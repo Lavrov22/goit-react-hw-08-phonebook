@@ -1,9 +1,11 @@
-// import { useEffect } from "react";
-import { getContacts } from "reduxSlice/selectors";
-import { useSelector} from "react-redux";
+import { useEffect } from "react";
+import { getContacts, getIsLoading, getError } from "reduxSlice/selectors";
+import { useDispatch, useSelector} from "react-redux";
 import { ContactForm } from "components/ContactForm/ContactForm";
 import { Filter } from "components/Filter/Filter";
 import { ContactList } from "components/ContactList/ContactList";
+import { fetchContacts } from "reduxSlice/operation";
+
 
 
 
@@ -93,13 +95,21 @@ import { ContactList } from "components/ContactList/ContactList";
 export const App = () => {
 
   const contacts = useSelector(getContacts);
+  const error = useSelector(getError);
+  const isLoading = useSelector(getIsLoading);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts())
+  }, [dispatch])
 
     return (
       <div>
         <h1>Phonebook</h1>
         <ContactForm></ContactForm>
-        {contacts.length !== 0 && 
-        <div>
+        {isLoading && <b>is loading....</b>}
+        {error && <b>{error}</b>} 
+        {contacts.length > 0 && <div>
         <h2>Contacts</h2>
         <Filter></Filter>
         <ContactList></ContactList>

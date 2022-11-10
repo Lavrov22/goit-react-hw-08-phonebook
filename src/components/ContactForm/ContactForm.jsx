@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getContacts } from "reduxSlice/selectors";
 import { nanoid } from 'nanoid'
 import { ButtonSubmit, FormContact, FormLabel, FormInput } from "components/ContactForm/ContactForm.styled";
-import { addContacts } from "reduxSlice/contactsSlice";
+import { addContact } from "reduxSlice/operation";
 
 // ================Class====================
 
@@ -98,10 +98,12 @@ export const ContactForm = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        dispatch(addContacts({ name, number }));
         const contactsName = contacts.map(contact => contact.name);
         if (!contactsName.includes(name)) {
+            dispatch(addContact({ name, number }));
             return reset();
+        } else {
+             alert(`${name} is alredy in contacts`);
         }
     };
 
