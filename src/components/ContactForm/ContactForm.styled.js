@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const FormContact = styled.form`
     border: 1px solid;
     width: 400px;
+    margin-bottom: 20px;
 `
 
 export const FormLabel = styled.label`

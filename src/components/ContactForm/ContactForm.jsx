@@ -1,82 +1,19 @@
 import { useState, useRef } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts } from "reduxSlice/selectors";
+import { selectContacts, selectIsLoading } from "redux/selectors";
+import { addContact } from "redux/operation";
 import { nanoid } from 'nanoid'
 import { ButtonSubmit, FormContact, FormLabel, FormInput } from "components/ContactForm/ContactForm.styled";
-import { addContact } from "reduxSlice/operation";
+import { Loader } from "components/Loader/Loader";
 
-// ================Class====================
-
-// export class ContactForm extends Component {
-//     state = {
-//         name: '',
-//         number: '',
-//     }
-
-//     numberId = nanoid();
-//     nameId = nanoid();
-
-//     handleChange = e => {
-//         const { name, value } = e.currentTarget;
-//         this.setState({ [name]: value });
-//     };
-
-//     handleSubmit = e => {
-//         e.preventDefault();
-//         this.props.onSubmit(this.state);
-        
-//         this.reset();
-//     };
-
-//     reset = () => {
-//         this.setState({ name: '', number: '', });
-//     };
-
-//     render() {
-//         const { name, number } = this.state;
-//         return (
-//             <FormContact onSubmit={this.handleSubmit}>
-//                 <FormLabel htmlFor={this.nameId}>
-//                     Name
-//                     <FormInput
-//                         type="text"
-//                         name="name"
-//                         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-//                         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-//                         required
-//                         onChange={this.handleChange}
-//                         value={name}
-//                         id={this.nameId}
-//                     />
-//                 </FormLabel>
-//                 <FormLabel htmlFor={this.numberId}>
-//                     Number
-//                     <FormInput
-//                         type="tel"
-//                         name="number"
-//                         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-//                         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-//                         required
-//                         onChange={this.handleChange}
-//                         value={number}
-//                         id={this.numberId}
-//                     />
-//                 </FormLabel>
-//                 <ButtonSubmit type="submit">Add contact</ButtonSubmit>
-//             </FormContact>
-//         )
-
-//     }
-// }
-
-// ================hooks====================
 
 export const ContactForm = () => {
     
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
 
-    const contacts = useSelector(getContacts);
+    const contacts = useSelector(selectContacts);
+    const isLoading = useSelector(selectIsLoading);
     const numberId = useRef(nanoid());
     const nameId = useRef(nanoid());
 
@@ -140,7 +77,7 @@ export const ContactForm = () => {
                     id={numberId.current}
                 />
             </FormLabel>
-            <ButtonSubmit type="submit">Add contact</ButtonSubmit>
+            <ButtonSubmit type="submit">{isLoading ? <Loader /> : 'Add contact'}</ButtonSubmit>
         </FormContact>
     )
 
