@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoading } from "redux/selectors";
 import { deleteContact } from "redux/operation";
@@ -16,3 +17,9 @@ export const ContacItem = ({id, name, number}) => {
             </ButtonDelete>
         </Item>);
 };
+
+ContacItem.propTypes = {
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired
+}
