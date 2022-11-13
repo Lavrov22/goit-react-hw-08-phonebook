@@ -77,7 +77,7 @@ export const ContactForm = () => {
                     id={numberId.current}
                 />
             </FormLabel>
-            <ButtonSubmit type="submit">{isLoading ? <Loader /> : 'Add contact'}</ButtonSubmit>
+            <ButtonSubmit type="submit">{isLoading === "pendingAddContact" ? <Loader /> : 'Add contact'}</ButtonSubmit>
         </FormContact>
     )
 

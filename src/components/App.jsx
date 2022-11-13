@@ -22,11 +22,11 @@ export const App = () => {
       <div>
         <h1>Phonebook</h1>
         <ContactForm></ContactForm>
-        {isLoading && <Loader/>}
         {error && <b>{error}</b>} 
-        {!isLoading && !error && <div>
+        {!error && <div>
         <h2>Contacts</h2>
         <Filter></Filter>
+        {isLoading === 'pending' && <Loader/>}
         <ContactList></ContactList>
         </div>}
       </div>

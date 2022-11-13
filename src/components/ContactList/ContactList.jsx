@@ -1,25 +1,17 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { selectIsLoading, selectFilterByName } from "redux/selectors";
-import { deleteContact } from "redux/operation";
-import { Item, ButtonDelete, List } from "components/ContactList/ContactList.styled";
-import { Loader } from "components/Loader/Loader";
+import { useSelector } from 'react-redux';
+import { selectFilterByName } from "redux/selectors";
+import { List } from "components/ContactList/ContactList.styled";
+import {ContacItem} from "components/ContactItem/ContactItem"
 
 
     
 export const ContactList = () => {
 
-    const isLoading = useSelector(selectIsLoading);
     const visibleName = useSelector(selectFilterByName);
-    const dispatch = useDispatch();
-
     return (
         <List >
-            {visibleName.map(({id, name, number}) => <Item key={id}>{name}: {number}
-                <ButtonDelete type='button' onClick={() => dispatch(deleteContact(id))}>
-            {isLoading ? <Loader /> : 'Delete'}
-        </ButtonDelete>
-            </Item>)}
+            {visibleName.map(contact => <ContacItem key={contact.id} {...contact} />)}
         </List >
-    )   
+    );  
 };
 
