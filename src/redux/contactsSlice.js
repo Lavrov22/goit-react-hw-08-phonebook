@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { fetchContacts, addContact, deleteContact } from "redux/operation";
 
 const handleRejected = (state, { payload }) => {
+    state.operation = null;
     state.isLoading = '';
     state.error = payload;
 };
@@ -11,34 +12,42 @@ export const contactSlice = createSlice({
     name: "contacts",
     initialState: {
         items: [],
-        isLoading: '',
+        isLoading: false,
         error: null,
+        operation: null,
     },
     extraReducers: {
         
         [fetchContacts.pending](state) {
-             state.isLoading = 'pending'
+            state.operation = 'fetch';
+            state.isLoading = true;
         },
-        [fetchContacts.fulfilled](state, action) { 
-            state.isLoading = '';
+        [fetchContacts.fulfilled](state, {payload}) {
+            state.operation = null;
+            state.isLoading = false;
             state.error = null;
-            state.items = action.payload;
+            state.items = payload;
         },
         [fetchContacts.rejected]: handleRejected,
         [addContact.pending](state) {
-             state.isLoading = 'pendingAddContact'
+            state.operation = 'add';
+            state.isLoading = true;
+
         },
         [addContact.fulfilled](state, { payload }) { 
-            state.isLoading = '';
+            state.operation = null;
+            state.isLoading = false;
             state.error = null;
             state.items.push(payload);
         },
         [addContact.rejected]: handleRejected,
-        [deleteContact.pending](state) {
-             state.isLoading = 'pendingDeleteContact'
+        [deleteContact.pending](state, action) {
+            state.operation = `${action.meta.arg}`
+            state.isLoading = true;
         },
         [deleteContact.fulfilled](state, { payload }) { 
-            state.isLoading = "";
+            state.operation = null;
+            state.isLoading = false;
             state.error = null;
             const index = state.items.findIndex(
                 contact => contact.id === payload.id);

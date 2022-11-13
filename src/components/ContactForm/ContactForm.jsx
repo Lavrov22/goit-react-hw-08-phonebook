@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts, selectIsLoading } from "redux/selectors";
+import { selectContacts, selectorOperation } from "redux/selectors";
 import { addContact } from "redux/operation";
 import { nanoid } from 'nanoid'
 import { ButtonSubmit, FormContact, FormLabel, FormInput } from "components/ContactForm/ContactForm.styled";
@@ -13,7 +13,7 @@ export const ContactForm = () => {
     const [number, setNumber] = useState('');
 
     const contacts = useSelector(selectContacts);
-    const isLoading = useSelector(selectIsLoading);
+    const operation = useSelector(selectorOperation);
     const numberId = useRef(nanoid());
     const nameId = useRef(nanoid());
 
@@ -35,8 +35,8 @@ export const ContactForm = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        const contactsName = contacts.map(contact => contact.name);
-        if (!contactsName.includes(name)) {
+        const contactsName = contacts.map(contact => contact.name.toLowerCase());
+        if (!contactsName.includes(name.toLowerCase())) {
             dispatch(addContact({ name, number }));
             return reset();
         } else {
@@ -77,7 +77,7 @@ export const ContactForm = () => {
                     id={numberId.current}
                 />
             </FormLabel>
-            <ButtonSubmit type="submit">{isLoading === "pendingAddContact" ? <Loader /> : 'Add contact'}</ButtonSubmit>
+            <ButtonSubmit type="submit">{operation === "add" ? <Loader /> : 'Add contact'}</ButtonSubmit>
         </FormContact>
     )
 
