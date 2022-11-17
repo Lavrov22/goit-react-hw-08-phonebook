@@ -1,37 +1,26 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector} from "react-redux";
-import { selectError, selectorOperation } from "redux/selectors";
-import { fetchContacts } from "redux/operation";
-import { ContactForm } from "components/ContactForm/ContactForm";
-import { Filter } from "components/Filter/Filter";
-import { ContactList } from "components/ContactList/ContactList";
-import { Loader } from "components/Loader/Loader";
+import { Routes, Route } from "react-router-dom";
+import { lazy } from "react";
 
+const PhoneBook = lazy(() => import('pages/PhoneBook/PhoneBook'));
+const Layout = lazy(() => import("components/Layout/Layout"));
+const LogIn = lazy(() => import('pages/LogIn/LogIn'));
+const Register = lazy(() => import('pages/Register/Register'));
 
 export const App = () => {
 
-  const error = useSelector(selectError);
-  const operation = useSelector(selectorOperation);
-  const dispatch = useDispatch();
+  return (
 
-  useEffect(() => {
-    dispatch(fetchContacts())
-  }, [dispatch])
+    <Routes>
+      <Route path='/' element={<Layout />}>
+        <Route index element={<div>Home</div>} />
+        <Route path='/phonebook' element={<PhoneBook />} ></Route>
+        <Route path='/login' element={<LogIn/>} ></Route>
+        <Route path='/register' element={<Register/>} ></Route>
+      </Route>
+    </Routes>
 
-    return (
-      <div>
-        <h1>Phonebook</h1>
-        <ContactForm></ContactForm>
-        {error && <b>{error}</b>} 
-        {!error && <div>
-        <h2>Contacts</h2>
-        <Filter></Filter>
-        {operation === 'fetch' && !error ? <Loader/> :<ContactList/> }
-        </div>}
-      </div>
-       
-         
-      
-    );
+  );
  
 };
+
+
