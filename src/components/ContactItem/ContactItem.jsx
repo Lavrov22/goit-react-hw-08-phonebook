@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectorOperation } from "redux/selectors";
-import { deleteContact } from "redux/operation";
+import { selectorOperation } from "redux/contacts/selectors";
+import { deleteContact } from "redux/contacts/operation";
 import { Item, ButtonDelete } from "components/ContactItem/ContactItem.styled";
 import { Loader } from "components/Loader/Loader";
 

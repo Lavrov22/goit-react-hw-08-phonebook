@@ -11,6 +11,7 @@ const Layout = () => {
                 <Link to='/phonebook'>Phone Book</Link>
                 <Link to='/login'>Log In</Link>
                 <Link to='/register'>Register</Link>
+                <button type="submit">Log Out</button>
             </Header>
             <Suspense fallback={<Loader/>}>
                 <Outlet />

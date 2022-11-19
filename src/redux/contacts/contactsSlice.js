@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchContacts, addContact, deleteContact } from "redux/operation";
+import { fetchContacts, addContact, deleteContact } from "redux/contacts/operation";
 
 const handleRejected = (state, { payload }) => {
     state.operation = null;
@@ -8,7 +8,7 @@ const handleRejected = (state, { payload }) => {
 };
 
 
-export const contactSlice = createSlice({
+const contactSlice = createSlice({
     name: "contacts",
     initialState: {
         items: [],

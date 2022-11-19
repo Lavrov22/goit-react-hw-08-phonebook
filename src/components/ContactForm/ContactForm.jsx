@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts, selectorOperation } from "redux/selectors";
-import { addContact } from "redux/operation";
+import { selectContacts, selectorOperation } from "redux/contacts/selectors";
+import { addContact } from "redux/contacts/operation";
 import { nanoid } from 'nanoid'
 import { ButtonSubmit, FormContact, FormLabel, FormInput } from "components/ContactForm/ContactForm.styled";
 import { Loader } from "components/Loader/Loader";
