@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { register } from "redux/Auth/operations";
 
 
 const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPssword] = useState('');
+    const dispatch = useDispatch()
 
     const handleChange = e => {
         const { name, value } = e.currentTarget;
@@ -26,12 +29,13 @@ const Register = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
+        dispatch(register({ name, email, password }));
     }
 
     return (
         <form
             autoComplete="off"
-            onClick={handleSubmit}
+            onSubmit={handleSubmit}
         >
             <label htmlFor="1">
                 Name

@@ -22,10 +22,14 @@ const rootReducer = combineReducers({
 //   storage,
 //   whitelist: ['token'],
 // }
-// const persistedReducer = persistReducer(authPersistConfig, rootReducer);
+// const persistedauthReducer = persistReducer(authPersistConfig, authReducer);
 
 
 export const store = configureStore({
+  // reducer: {
+  //   auth: persistedauthReducer,
+  //   contacts: rootReducer,
+  // },
   reducer: rootReducer,
   // middleware: getDefaultMiddleware =>
   //   getDefaultMiddleware({
@@ -33,7 +37,7 @@ export const store = configureStore({
   //       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
   //     },
   //   }),
+  // devTools: process.env.NODE_ENV === 'development',
 });
-
 
 // export const persistor = persistStore(store);
