@@ -1,9 +1,13 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { logIn } from "redux/Auth/operations";
 
 
 const LogIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const dispatch = useDispatch();
+
     const handleChange = e => {
         const { name, value } = e.currentTarget;
        switch (name) {
@@ -20,6 +24,7 @@ const LogIn = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
+        dispatch(logIn({ email, password }));
     }
 
     return (
