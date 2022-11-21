@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkreact_homework_template=self.webpackChunkreact_homework_template||[]).push([[98],{3098:function(e,t,s){s.r(t);var a=s(184);t.default=function(){return(0,a.jsxs)("form",{autoComplete:"off",children:[(0,a.jsxs)("label",{htmlFor:"1",children:["Email",(0,a.jsx)("input",{type:"email",name:"email",id:"1"})]}),(0,a.jsxs)("label",{htmlFor:"2",children:["Password",(0,a.jsx)("input",{type:"password",name:"password",id:"2"})]}),(0,a.jsx)("button",{type:"submit",children:"Log In"})]})}}}]);
-//# sourceMappingURL=98.1a278504.chunk.js.map
