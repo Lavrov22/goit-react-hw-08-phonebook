@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import { NavLink } from "react-router-dom";
 
 export const Link = styled(NavLink)`
-    margin-right: 10px;
     cursor: pointer;
     text-decoration: none;
     color: black;
@@ -14,6 +13,11 @@ export const Link = styled(NavLink)`
      &.active {
     color: white;
     
-  } 
+  }
 `
 
+export const Wrapper = styled.div`
+    display: flex;
+    margin-left: auto;
+    gap: 10px;
+`

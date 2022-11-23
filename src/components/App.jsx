@@ -15,7 +15,6 @@ const Register = lazy(() => import('pages/Register/Register'));
 export const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
-  console.log(isRefreshing)
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
@@ -28,7 +27,8 @@ export const App = () => {
     <Routes>
       <Route path='/' element={<Layout />}>
         <Route index element={<div>Home</div>} />
-        <Route path='/phonebook' element={<PrivateRoute component={PhoneBook} redirectTo='/login'/>} ></Route>
+          <Route path='/phonebook' element={
+            <PrivateRoute component={PhoneBook} redirectTo='/login' />} ></Route>
         <Route path='/login' element={
           <RestrictedRoute component={LogIn} redirectTo='/phonebook'/>
         } ></Route>
