@@ -6,13 +6,13 @@ import { AuthNav } from "components/AuthNav/AuthNav";
 import { UserMenu } from "components/UserMenu/UserMenu";
 import {selectIsLoggedIn} from "redux/Auth/selectors"
 import { useSelector } from "react-redux";
-import { AppBar, Toolbar, Container  } from '@mui/material';
+import { AppBar, Toolbar, Container, Box  } from '@mui/material';
 
 const Layout = () => {
     const isLoggedIn = useSelector(selectIsLoggedIn);
 
     return (
-        <>
+        <Box>
             <AppBar position="static">
                 <Container>
                     <Toolbar disableGutters>
@@ -27,7 +27,7 @@ const Layout = () => {
                     <Outlet />
                 </Suspense>
             </Container>
-        </>
+        </Box>
     )
 };
 
