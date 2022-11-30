@@ -15,6 +15,21 @@ export const Link = styled(NavLink)`
     
   }
 `
+export const LinkRegister = styled(NavLink)`
+    cursor: pointer;
+    text-decoration: none;
+    color: tomato;
+    font-weight: 500;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    :hover, :focus{
+        color: white;
+    }
+     &.active {
+    color: white;
+    
+  }
+`
+
 
 export const Wrapper = styled.div`
     display: flex;

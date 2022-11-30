@@ -1,17 +1,26 @@
 
 import * as React from 'react';
-import IconButton from '@mui/material/IconButton';
-import Box from '@mui/material/Box';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormControl from '@mui/material/FormControl';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import Button from '@mui/material/Button';
+import {
+    VisibilityOff,
+    Visibility
+} from '@mui/icons-material';
+import {
+    FormGroup,
+    FormControl,
+    InputAdornment,
+    InputLabel,
+    OutlinedInput,
+    Box,
+    IconButton, 
+    Button,
+    Typography
+} from '@mui/material';
+
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { logIn } from "redux/Auth/operations";
+
+
 
 
 export default function LogIn() {
@@ -20,8 +29,6 @@ export default function LogIn() {
     const [showPassword, setShowPassword] = useState(false);
     const dispatch = useDispatch();
 
-    console.log(email)
-    console.log(password)
      const handleChange = e => {
         const { name, value } = e.currentTarget;
         switch (name) {
@@ -49,52 +56,59 @@ export default function LogIn() {
          dispatch(logIn({ email, password }));
          setEmail('');
          setPassword('');
+
     }
 
     return (
         <Box
-            sx={{ display: 'flex', flexWrap: 'wrap' }}
+            sx={{ display: 'flex', flexWrap: 'wrap', mt: 5,}}
             component="form"
-            autoComplete="off"
-            onSubmit={handleSubmit}>
-            <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined" >
-                <InputLabel htmlFor="outlined-adornment-email">Email</InputLabel>
-                <OutlinedInput
-                    id="outlined-adornment-email"
-                    value={email}
-                    onChange={handleChange}
-                    label="Email"
-                    name='email'
-                    type='email'
+            onSubmit={handleSubmit}
+             autoComplete='off'
+        >
+            <FormGroup sx={{ mx: 'auto',}}>
+                <Typography variant="h3" component="h1" sx={{ textAlign: 'center', mb: 2}}>
+                    Contact Log In
+                </Typography>
+                <FormControl sx={{ m: 1, width: '300px' }} variant="outlined"  >
+                    <InputLabel htmlFor="outlined-adornment-email">Email</InputLabel>
+                    <OutlinedInput
+                        id="outlined-adornment-email"
+                        value={email}
+                        onChange={handleChange}
+                        label="Email"
+                        name='email'
+                        type='email'
                     
-                />
-            </FormControl>
-            <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-password" autoComplete="off">Password</InputLabel>
-                <OutlinedInput
-                    id="outlined-adornment-password"
-                    type={showPassword ? 'text' : 'password'}
-                    value={password}
-                    onChange={handleChange}
-                    name='password'
-                    
-                    endAdornment={
-                        <InputAdornment position="end">
-                            <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                                edge="end"
-                            >
-                                {showPassword ? <VisibilityOff /> : <Visibility />}
-                            </IconButton>
-                        </InputAdornment>
-                    }
-                    label="Password"
                     />
+                </FormControl>
+                <FormControl sx={{ m: 1, width: '300px' }} variant="outlined">
+                    <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                    <OutlinedInput
+                        id="outlined-adornment-password"
+                        type={showPassword ? 'text' : 'password'}
+                        value={password}
+                        onChange={handleChange}
+                        name='password'
                     
-            </FormControl>
-            <Button variant="contained" type="submit" sx={{height: 50}}  onSubmit={handleSubmit}>Log In</Button>
+                        endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={handleClickShowPassword}
+                                    onMouseDown={handleMouseDownPassword}
+                                    edge="end"
+                                >
+                                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                                </IconButton>
+                            </InputAdornment>
+                        }
+                        label="Password"
+                    />
+        
+                </FormControl>
+                <Button variant="contained" type="submit" sx={{ ml: 1, mr: 1, width: '300px'}} >Log In</Button>
+            </FormGroup>
         </Box>
                 
     );

@@ -8,7 +8,7 @@ import {selectIsLoggedIn} from "redux/Auth/selectors"
 import { useSelector } from "react-redux";
 import { AppBar, Toolbar, Container, Box  } from '@mui/material';
 
-const Layout = () => {
+export const Layout = () => {
     const isLoggedIn = useSelector(selectIsLoggedIn);
 
     return (
@@ -31,4 +31,4 @@ const Layout = () => {
     )
 };
 
-export default Layout;
+// export default Layout;

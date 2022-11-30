@@ -2,12 +2,30 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { register } from "redux/Auth/operations";
 
+import {
+    VisibilityOff,
+    Visibility
+} from '@mui/icons-material';
+import {
+    FormGroup,
+    FormControl,
+    InputAdornment,
+    InputLabel,
+    OutlinedInput,
+    Box,
+    IconButton, 
+    Button,
+    Typography
+} from '@mui/material';
+
 
 const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPssword] = useState('');
-    const dispatch = useDispatch()
+    const [showPassword, setShowPassword] = useState(false);
+    const dispatch = useDispatch();
+
 
     const handleChange = e => {
         const { name, value } = e.currentTarget;
@@ -32,43 +50,76 @@ const Register = () => {
         dispatch(register({ name, email, password }));
     }
 
+    const handleClickShowPassword = () => {
+        setShowPassword(!showPassword);
+    };
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
+
     return (
-        <form
-            autoComplete="off"
-            onSubmit={handleSubmit}
+
+         <Box
+            sx={{ display: 'flex', flexWrap: 'wrap', mt: 5,}}
+            component="form"
+                onSubmit={handleSubmit}
+                autoComplete='off'
         >
-            <label htmlFor="1">
-                Name
-                <input
-                    type="text"
-                    name="name"
-                    id='1'
-                    onChange={handleChange}
-                    value={name}
-                />
-            </label>
-            <label htmlFor="2">
-                Email
-                <input
-                    type="email"
-                    name="email"
-                    id='2'
-                    onChange={handleChange}
-                    value={email}
-                />
-            </label>
-            <label htmlFor="3">
-                Password
-                <input
-                    type="password"
-                    name="password"
-                    id='3'
-                    onChange={handleChange}
-                    value={password}
-                />
-            </label>
-            <button type="submit">Log In</button>
-        </form>
+            <FormGroup sx={{ mx: 'auto',}}>
+                <Typography variant="h3" component="h1" sx={{ mb: 2}}>
+                    Contact Register
+                    </Typography>
+                    <FormControl sx={{ m: 1, width: '300px', mx: 'auto' }} variant="outlined" >
+                    <InputLabel htmlFor="outlined-adornment-name">Name</InputLabel>
+                    <OutlinedInput
+                        id="outlined-adornment-name"
+                        value={name}
+                        onChange={handleChange}
+                        label="Name"
+                        name='name'
+                        type='text'
+                    />
+                </FormControl>
+                <FormControl sx={{ m: 1, width: '300px', mx: 'auto' }} variant="outlined" >
+                    <InputLabel htmlFor="outlined-adornment-email">Email</InputLabel>
+                    <OutlinedInput
+                        id="outlined-adornment-email"
+                        value={email}
+                        onChange={handleChange}
+                        label="Email"
+                        name='email'
+                        type='email'
+                    />
+                </FormControl>
+                <FormControl sx={{ m: 1, width: '300px', mx: 'auto' }} variant="outlined">
+                    <InputLabel htmlFor="outlined-adornment-password" >Password</InputLabel>
+                    <OutlinedInput
+                        id="outlined-adornment-password"
+                        type={showPassword ? 'text' : 'password'}
+                        value={password}
+                        onChange={handleChange}
+                        name='password'
+                    
+                        endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={handleClickShowPassword}
+                                    onMouseDown={handleMouseDownPassword}
+                                    edge="end"
+                                >
+                                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                                </IconButton>
+                            </InputAdornment>
+                        }
+                        label="Password"
+                    />
+        
+                </FormControl>
+                <Button variant="contained" type="submit" sx={{ ml: 1, mr: 1, width: '300px', mx: 'auto'}} >Register</Button>
+            </FormGroup>
+            </Box>
+    
     );
 }
 
