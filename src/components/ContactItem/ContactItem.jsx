@@ -7,7 +7,6 @@ import {
     Box,
     Typography,
     Button,
-    Chip
 } from '@mui/material';
 
 
@@ -17,16 +16,16 @@ export const ContacItem = ({id, name, number}) => {
     const dispatch = useDispatch();
 
     return (
-    
-    
-            <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, gap: 2, justifyContent: 'space-between', width: '300px', mx: 'auto' }}>
+        <>
+            {operation === 'fetch' ? <Loader/> : <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, gap: 2, justifyContent: 'space-between', width: '300px', mx: 'auto' }}>
                 <Typography variant="body1" component="h1" sx={{ textAlign: 'center' }}>
                     {name}: {number}
                 </Typography>
                 <Button variant="contained" type="button" onClick={() => dispatch(deleteContact(id))}>
                     {operation === id ? <Loader /> : 'Delete'}
                 </Button>
-            </Box>
+            </Box>}
+        </>
     );
 };
 

@@ -1,9 +1,16 @@
-import { Pending } from "components/Loader/Loader.styled";
-import { ImSpinner3 } from "react-icons/im";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
 
 export const Loader = () => {
-    return (
-        <Pending><ImSpinner3 /></Pending>
-    );
-
+  return (
+    <Box sx={{ width: '100%', mt: 1}}>
+      <LinearProgress />
+    </Box>
+  );
 }
+
+
+
+
+

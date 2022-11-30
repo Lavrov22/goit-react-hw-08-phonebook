@@ -17,6 +17,7 @@ import {
     Button,
     Typography
 } from '@mui/material';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 
 const Register = () => {
@@ -44,9 +45,11 @@ const Register = () => {
                 break;
         }
     }
-
     const handleSubmit = e => {
         e.preventDefault();
+        if (password.length < 7) {
+          return  Notify.warning('Password is at least 7 number');
+        }
         dispatch(register({ name, email, password }));
     }
 
