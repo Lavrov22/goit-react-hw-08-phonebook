@@ -22,7 +22,6 @@ import { logIn } from "redux/Auth/operations";
 
 
 
-
 export default function LogIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -54,8 +53,6 @@ export default function LogIn() {
      const handleSubmit = e => {
         e.preventDefault();
          dispatch(logIn({ email, password }));
-         setEmail('');
-         setPassword('');
 
     }
 

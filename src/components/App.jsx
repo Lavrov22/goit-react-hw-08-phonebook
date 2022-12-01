@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { lazy, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCurrentUser } from "redux/Auth/operations";
@@ -36,6 +36,7 @@ export const App = () => {
         <Route path='/register' element={
           <RestrictedRoute component={Register} redirectTo='/phonebook' />
         } ></Route>
+          <Route path="*" element={<Navigate to="/"/>} />
       </Route>
     </Routes>
 
